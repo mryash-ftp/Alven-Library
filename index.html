@@ -68,7 +68,46 @@
             </a>
         </div>
     </nav>
+    <div class="marquee-container">
+    <a href="https://mryash-ftp.github.io/Alven-Library/" class="marquee-link">
+        <span>Discover Alven's Future Projects — <span class="wild">Click Here to Explore → </span></span>
+    </a>
+</div>
 
+<style>
+    .wild{
+        color: rgb(255, 0, 0);
+    }
+    .marquee-container {
+        width: 100%;
+        background: #ffffff;
+        overflow: hidden;
+        white-space: nowrap;
+        border: none;
+        padding: 8px 0;
+    }
+
+    .marquee-link {
+        text-decoration: none;
+        display: inline-block;
+        animation: marquee 25s linear infinite;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Arial, sans-serif;
+        color: #1a73e8;
+        font-size: 1rem;
+        font-weight: 500;
+        padding: 0 20px;
+    }
+
+    .marquee-link:hover {
+        animation-play-state: paused;
+        color: #1557b0;
+    }
+
+    @keyframes marquee {
+        0% { transform: translateX(100%); }
+        100% { transform: translateX(-100%); }
+    }
+</style>
     <!-- hero - clean typography only -->
     <header class="max-w-5xl mx-auto pt-16 pb-12 px-6 text-center md:text-left">
         <h2 class="text-4xl md:text-5xl font-extrabold mb-4 leading-tight text-slate-800">
@@ -160,4 +199,3 @@
     <script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>
 </body>
 </html>
-
