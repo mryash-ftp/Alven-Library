@@ -2,249 +2,402 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alven Alex · Library</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Alven Alex · Dream Library | Future Projects</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
         body { 
-            background-color: #fcfdfe; 
+            background-color: #fbfdfe; 
             color: #1a2634; 
             font-family: 'Plus Jakarta Sans', sans-serif; 
+            scroll-behavior: smooth;
+            overflow-x: hidden;
         }
+        /* glass header refined */
         .glass-header {
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid #eef2f5;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+            box-shadow: 0 2px 12px rgba(0,0,0,0.02);
         }
+        /* modern card */
         .card-modern {
             background: #ffffff;
-            border: 1px solid #f0f3f6;
-            border-radius: 24px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid #eff3f8;
+            border-radius: 32px;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            box-shadow: 0 8px 20px -8px rgba(0,0,0,0.02);
         }
         .card-modern:hover {
             border-color: #3b82f6;
-            transform: translateY(-5px);
-            box-shadow: 0 20px 40px -15px rgba(59, 130, 246, 0.1);
+            transform: translateY(-6px);
+            box-shadow: 0 24px 40px -16px rgba(59, 130, 246, 0.18);
         }
-        .github-btn {
+        /* glow & buttons */
+        .github-btn-sm {
             background: #0f172a;
             color: white;
-            transition: all 0.2s;
-            border-radius: 12px;
+            transition: all 0.25s ease;
+            border-radius: 40px;
+            font-weight: 600;
+            letter-spacing: 0.2px;
         }
-        .github-btn:hover { 
+        .github-btn-sm:hover { 
             background: #1e293b;
             transform: scale(1.02);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
         }
-        .badge {
+        .badge-modern {
             font-size: 10px;
             font-weight: 700;
-            padding: 2px 8px;
-            border-radius: 6px;
+            padding: 4px 10px;
+            border-radius: 40px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 0.3px;
         }
-        /* Marquee Animation Smoothness */
-        @keyframes marquee {
-            0% { transform: translateX(100%); }
-            100% { transform: translateX(-100%); }
+        /* animated marquee */
+        @keyframes marqueeSlow {
+            0% { transform: translateX(102%); }
+            100% { transform: translateX(-102%); }
         }
         .animate-marquee {
             display: inline-block;
-            animation: marquee 30s linear infinite;
+            animation: marqueeSlow 34s linear infinite;
+            white-space: nowrap;
+        }
+        .marquee-container:hover .animate-marquee {
+            animation-play-state: paused;
+        }
+        /* portfolio button - smaller & elegant */
+        .portfolio-btn {
+            background: linear-gradient(105deg, #1e2b3c 0%, #1f2d3e 100%);
+            border: 1px solid rgba(59,130,246,0.25);
+            color: white;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.75rem;
+            padding: 0.45rem 1.1rem;
+            transition: all 0.25s;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+        .portfolio-btn:hover {
+            background: linear-gradient(105deg, #0f2b3f, #2563eb);
+            border-color: #3b82f6;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 18px -6px rgba(37,99,235,0.3);
+        }
+        /* DREAM PROJECT PREMIUM BANNER */
+        .dream-glow {
+            background: linear-gradient(135deg, rgba(255,215,0,0.08), rgba(255,150,0,0.02));
+            border: 1px solid rgba(255,200,50,0.5);
+            box-shadow: 0 20px 35px -12px rgba(234,179,8,0.25), inset 0 1px 0 rgba(255,255,255,0.6);
+            transition: all 0.4s ease;
+        }
+        .dream-glow:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 25px 40px -12px rgba(245,158,11,0.4);
+            transform: scale(1.01);
+        }
+        .dream-badge {
+            background: linear-gradient(115deg, #f59e0b, #d97706);
+            box-shadow: 0 2px 10px rgba(245,158,11,0.4);
+        }
+        .pulse-ring {
+            animation: softPulse 2s infinite;
+        }
+        @keyframes softPulse {
+            0% { box-shadow: 0 0 0 0 rgba(245,158,11,0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(245,158,11,0); }
+            100% { box-shadow: 0 0 0 0 rgba(245,158,11,0); }
+        }
+        /* scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(28px);
+            transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.1), transform 0.7s cubic-bezier(0.2, 0.9, 0.3, 1.1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-scale {
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 0.6s ease, transform 0.5s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+        }
+        .reveal-scale.active {
+            opacity: 1;
+            transform: scale(1);
+        }
+        .update-item {
+            transition: background 0.2s, transform 0.2s;
+            border-radius: 28px;
+        }
+        .update-item:hover {
+            background: #fafcff;
+            transform: translateX(3px);
+        }
+        /* custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #eef2f6;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #bac8d9;
+            border-radius: 8px;
+        }
+        /* rainbow animation for dream icon */
+        @keyframes floatingStar {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-3px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .star-float {
+            animation: floatingStar 2.2s ease-in-out infinite;
         }
     </style>
 </head>
-<body class="antialiased">
+<body>
 
-    <nav class="glass-header sticky top-0 z-50 px-6 py-4">
+    <!-- Navigation with refined portfolio button smaller -->
+    <nav class="glass-header sticky top-0 z-50 px-5 py-3 md:py-3">
         <div class="max-w-5xl mx-auto flex justify-between items-center">
-            <div class="flex items-center gap-2">
-                <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">A</div>
+            <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center text-white font-extrabold shadow-md">A</div>
                 <span class="font-extrabold text-lg tracking-tight text-slate-800">Alven <span class="text-blue-600">Library</span></span>
             </div>
-            <a href="https://mryash-ftp.github.io/Alven/" class="text-sm font-bold text-slate-600 hover:text-blue-600 transition flex items-center gap-1">
-                Portfolio <span class="text-xs">↗</span>
-            </a>
+            <button onclick="window.open('https://mryash-ftp.github.io/Alven/', '_blank')" 
+                    class="portfolio-btn group flex items-center gap-1.5 transition-all duration-200 cursor-pointer">
+                <i class="fas fa-home text-[11px]"></i>
+                <span class="text-[0.71rem] font-semibold tracking-wide">Portfolio</span>
+                <svg class="w-3 h-3 transition-transform duration-200 group-hover:translate-x-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+                </svg>
+            </button>
         </div>
     </nav>
-
-    <div class="w-full bg-slate-50 border-b border-slate-100 py-2 overflow-hidden whitespace-nowrap">
-        <div class="animate-marquee hover:pause transition-all cursor-pointer">
-            <span class="text-sm font-medium text-slate-500">
-                🚀 New Project: <span class="text-blue-600 font-bold">Desktop Organizer UI</span> coming soon! &nbsp;&nbsp; • &nbsp;&nbsp; 🛠️ All scripts updated to Python 3.12 &nbsp;&nbsp; • &nbsp;&nbsp; 📦 <span class="text-red-500 font-bold">Discover Alven's Future Projects — <a href="https://mryash-ftp.github.io/Web-Projects/project2/"> Click Here →</a></span>
+  
+    <!-- Marquee ticker (improved) - still includes the future project link but also we add premium banner separate -->
+    <div class="w-full bg-slate-50/90 border-b border-slate-100 py-2.5 overflow-hidden whitespace-nowrap marquee-container">
+        <div class="animate-marquee hover:pause transition-all cursor-default">
+            <span class="text-sm font-medium text-slate-600 mx-4">
+                🚀 New Project: <span class="text-blue-700 font-bold">Desktop Organizer UI</span> coming soon! &nbsp;&nbsp;✦&nbsp;&nbsp; 🛠️ All scripts updated to Python 3.12 &nbsp;&nbsp;✦&nbsp;&nbsp; 📦 <span class="text-amber-600 font-bold">✨ Discover Alven's Future Projects — <a href="https://mryash-ftp.github.io/Web-Projects/project2/" class="underline decoration-wavy hover:decoration-solid font-extrabold" target="_blank">Click Here →</a></span>
             </span>
         </div>
     </div>
 
-    <header class="max-w-5xl mx-auto pt-20 pb-16 px-6 text-center">
-        <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-[1.1] text-slate-900 tracking-tight">
-            Elevate your <span class="text-blue-600">Workflow</span><br>with Python.
+    <!-- ✨ DREAM PROJECT PREMIUM HIGHLIGHT SECTION ✨ (Dashboard main spotlight) -->
+    <div class="max-w-5xl mx-auto px-6 mt-8 mb-6 reveal">
+        <div class="dream-glow rounded-3xl p-0.5 transition-all duration-300">
+            <div class="bg-gradient-to-br from-white via-amber-50/20 to-white rounded-3xl p-5 md:p-6 backdrop-blur-sm">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-5">
+                    <div class="flex-1">
+                        <div class="flex flex-wrap items-center gap-3 mb-3">
+                            <span class="dream-badge text-white text-[11px] font-black px-3 py-1.5 rounded-full inline-flex items-center gap-1 pulse-ring">
+                                <i class="fas fa-star-of-life text-[9px] animate-spin" style="animation-duration: 3s;"></i> DREAM PROJECT • PRIORITY FLAGSHIP
+                            </span>
+                            <span class="bg-black/5 text-amber-700 text-[10px] font-bold px-2 py-1 rounded-full"><i class="far fa-clock"></i> COMING 2027-2030</span>
+                        </div>
+                        <h2 class="text-2xl md:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-amber-800 via-amber-600 to-orange-600 bg-clip-text text-transparent">🌌 Discover Alven's Future Universe</h2>
+                        <p class="text-slate-600 text-sm md:text-base max-w-2xl mt-2 leading-relaxed">The ultimate dream ecosystem — AI-powered automation, cross-platform intelligence & next-gen developer tools. <span class="font-bold text-amber-700">More than a project, it's a vision.</span></p>
+                        <div class="flex flex-wrap gap-3 mt-4">
+                            <div class="flex items-center gap-1 text-xs bg-amber-50 px-3 py-1.5 rounded-full text-amber-800 font-medium"><i class="fas fa-brain text-amber-600"></i> AI Core</div>
+                            <div class="flex items-center gap-1 text-xs bg-amber-50 px-3 py-1.5 rounded-full text-amber-800 font-medium"><i class="fas fa-cloud-upload-alt"></i> Cloud Sync</div>
+                            <div class="flex items-center gap-1 text-xs bg-amber-50 px-3 py-1.5 rounded-full text-amber-800 font-medium"><i class="fas fa-microchip"></i> Edge Ready</div>
+                        </div>
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3 items-center">
+                        <a href="https://mryash-ftp.github.io/Web-Projects/project2/" target="_blank" class="group relative inline-flex items-center justify-center gap-2 bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-700 hover:to-orange-700 text-white px-6 py-3 rounded-2xl font-bold text-sm transition-all shadow-lg shadow-amber-200/50 transform hover:scale-105">
+                            <i class="fa-regular fa-compass star-float"></i> 
+                            <span>Explore Dream Project</span>
+                            <i class="fas fa-arrow-right text-xs transition-transform group-hover:translate-x-1"></i>
+                        </a>
+                        <button onclick="openDreamModal()" class="border border-amber-300 bg-white/70 backdrop-blur-sm hover:bg-amber-50 px-5 py-2.5 rounded-xl text-sm font-semibold text-amber-800 transition-all flex items-center gap-2">
+                            <i class="fa-regular fa-eye"></i> Roadmap Preview
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hero with scrolling animation -->
+    <header class="max-w-5xl mx-auto pt-12 pb-12 px-6 text-center reveal">
+        <h2 class="text-5xl md:text-6xl font-extrabold mb-6 leading-[1.15] text-slate-900 tracking-tight">
+            Elevate your <span class="text-blue-600 relative inline-block after:content-[''] after:absolute after:w-full after:h-2 after:bg-blue-100 after:bottom-1 after:left-0 after:-z-10 after:rounded-full">Workflow</span><br>with Python.
         </h2>
-        <p class="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed">
+        <p class="text-slate-500 max-w-2xl mx-auto text-lg md:text-xl leading-relaxed font-medium">
             A high-performance collection of automation tools and data modules designed for speed and efficiency.
         </p>
     </header>
 
+    <!-- Feature cards -->
     <section class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 mb-20">
-        <div class="card-modern p-8">
-            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+        <div class="card-modern p-8 reveal-scale" data-delay="0">
+            <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <i class="fas fa-code text-xl"></i>
             </div>
             <h3 class="font-bold text-xl mb-3 text-slate-800">Python Tools</h3>
             <p class="text-slate-500 text-sm leading-relaxed mb-6">Optimized scripts for system handling and logic processing.</p>
             <div class="flex gap-2 mb-6">
-                <span class="badge bg-blue-50 text-blue-600">Source</span>
-                <span class="badge bg-slate-100 text-slate-600">Logic</span>
+                <span class="badge-modern bg-blue-50 text-blue-700">Source</span>
+                <span class="badge-modern bg-slate-100 text-slate-700">Logic</span>
             </div>
             <a href="#" class="text-blue-600 text-sm font-extrabold hover:gap-2 transition-all flex items-center gap-1">Browse Hub →</a>
         </div>
-
-        <div class="card-modern p-8">
-            <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+        <div class="card-modern p-8 reveal-scale" data-delay="0.1">
+            <div class="w-12 h-12 bg-purple-50 text-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <i class="fas fa-chart-pie text-xl"></i>
             </div>
             <h3 class="font-bold text-xl mb-3 text-slate-800">Data Visuals</h3>
             <p class="text-slate-500 text-sm leading-relaxed mb-6">Turn raw numbers into interactive and clean visual insights.</p>
             <div class="flex gap-2 mb-6">
-                <span class="badge bg-purple-50 text-purple-600">Analytics</span>
-                <span class="badge bg-slate-100 text-slate-600">Graphs</span>
+                <span class="badge-modern bg-purple-50 text-purple-700">Analytics</span>
+                <span class="badge-modern bg-slate-100 text-slate-700">Graphs</span>
             </div>
             <a href="#" class="text-purple-600 text-sm font-extrabold hover:gap-2 transition-all flex items-center gap-1">Analyze Data →</a>
         </div>
-
-        <div class="card-modern p-8">
-            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+        <div class="card-modern p-8 reveal-scale" data-delay="0.2">
+            <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center mb-6 shadow-sm">
                 <i class="fas fa-robot text-xl"></i>
             </div>
             <h3 class="font-bold text-xl mb-3 text-slate-800">Auto Bot</h3>
             <p class="text-slate-500 text-sm leading-relaxed mb-6">Kill repetitive tasks with simple, one-click automation scripts.</p>
             <div class="flex gap-2 mb-6">
-                <span class="badge bg-emerald-50 text-emerald-600">Automation</span>
-                <span class="badge bg-slate-100 text-slate-600">Scripts</span>
+                <span class="badge-modern bg-emerald-50 text-emerald-700">Automation</span>
+                <span class="badge-modern bg-slate-100 text-slate-700">Scripts</span>
             </div>
             <a href="#" class="text-emerald-600 text-sm font-extrabold hover:gap-2 transition-all flex items-center gap-1">Get Started →</a>
         </div>
     </section>
 
-    <section class="max-w-5xl mx-auto px-6 mb-24">
+    <!-- Projects section active -->
+    <section class="max-w-5xl mx-auto px-6 mb-24 reveal">
         <div class="flex items-center justify-between mb-8">
             <div class="flex items-center gap-3">
                 <span class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></span>
-                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Active Projects</h3>
+                <h3 class="text-xs font-black text-slate-400 uppercase tracking-widest">Active Automation HUB</h3>
             </div>
-            <span class="text-xs font-bold text-slate-400">Total: 03 Tools</span>
+            <span class="text-xs font-bold text-slate-400 bg-slate-100 px-3 py-1 rounded-full">Total: 04 Tools</span>
         </div>
-        
-        <div class="bg-white border border-slate-100 rounded-[32px] shadow-sm overflow-hidden p-2">
-            
-            <div class="update-item p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 rounded-2xl">
+        <div class="bg-white border border-slate-100 rounded-[40px] shadow-sm overflow-hidden p-1.5">
+            <div class="update-item p-5 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-5 rounded-2xl">
                 <div class="flex items-center gap-5">
-                    <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-lg">📁</div>
-                    <div>
-                        <h4 class="font-extrabold text-slate-800 text-base">Desktop Date-Wise Organizer</h4>
-                        <div class="flex gap-3 mt-1 items-center">
-                            <span class="text-[10px] font-bold text-orange-500 bg-orange-50 px-2 py-0.5 rounded uppercase">Under Dev</span>
-                            <span class="text-xs text-slate-400 italic font-medium">Auto-sorting for clean desktops.</span>
-                        </div>
-                    </div>
+                    <div class="w-10 h-10 bg-slate-50 rounded-full flex items-center justify-center text-lg shadow-inner">📁</div>
+                    <div><h4 class="font-extrabold text-slate-800 text-base">Desktop Date-Wise Organizer</h4><div class="flex gap-3 mt-1"><span class="text-[10px] font-bold text-orange-600 bg-orange-50 px-2.5 py-0.5 rounded-full">Under Dev</span><span class="text-xs text-slate-400 italic">Auto-sorting</span></div></div>
                 </div>
-                <a href="https://github.com/mryash-ftp/Alven-Automation-Hub/tree/main/4-Alven%20Desktop%20Cleaner" target="_blank" class="github-btn flex items-center justify-center gap-2 px-6 py-2.5 text-xs font-bold shadow-lg shadow-slate-200">
-                    <i class="fab fa-github"></i> VIEW REPO
-                </a>
+                <a href="https://github.com/mryash-ftp/Alven-Automation-Hub/tree/main/4-Alven%20Desktop%20Cleaner" target="_blank" class="github-btn-sm flex items-center gap-2 px-5 py-2 text-xs font-bold"><i class="fab fa-github"></i> REPO</a>
             </div>
-
-            <div class="update-item p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 rounded-2xl mt-1">
-                <div class="flex items-center gap-5">
-                    <div class="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center text-lg">⚡</div>
-                    <div>
-                        <h4 class="font-extrabold text-slate-800 text-base">PyConvert Pro</h4>
-                        <div class="flex gap-3 mt-1 items-center">
-                            <span class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded uppercase">V2.0 STABLE</span>
-                            <span class="text-xs text-slate-400 italic font-medium">Python to Standalone EXE.</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3">
-                    <a href="https://drive.google.com/uc?export=download&id=1bSQ32sQpl0doE6c3-1khVheIGttMP5vV" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-blue-100">
-                        <i class="fas fa-download"></i> EXE
-                    </a>
-                    <a href="https://github.com/mryash-ftp/Alven-Automation-Hub/tree/main/1-PyConvert-Pro" class="github-btn flex items-center gap-2 px-5 py-2.5 text-xs font-bold shadow-lg shadow-slate-200">
-                        <i class="fab fa-github"></i> CODE
-                    </a>
-                </div>
+            <div class="border-t border-slate-100 my-1 mx-4"></div>
+            <div class="update-item p-5 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-5 rounded-2xl">
+                <div class="flex items-center gap-5"><div class="w-10 h-10 bg-indigo-50 rounded-full flex items-center justify-center text-lg">⚡</div><div><h4 class="font-extrabold text-slate-800">PyConvert Pro</h4><div class="flex gap-3 mt-1"><span class="text-[10px] font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full">V2.0 STABLE</span><span class="text-xs text-slate-400 italic">Python to EXE</span></div></div></div>
+                <div class="flex gap-3"><a href="https://drive.google.com/uc?export=download&id=1bSQ32sQpl0doE6c3-1khVheIGttMP5vV" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-full px-4 py-2 flex items-center gap-2"><i class="fas fa-download"></i> EXE</a><a href="https://github.com/mryash-ftp/Alven-Automation-Hub/tree/main/1-PyConvert-Pro" class="github-btn-sm flex items-center gap-2 px-4 py-2 text-xs"><i class="fab fa-github"></i> CODE</a></div>
             </div>
-
-            <div class="update-item p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 rounded-2xl mt-1">
-                <div class="flex items-center gap-5">
-                    <div class="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center text-lg">📂</div>
-                    <div>
-                        <h4 class="font-extrabold text-slate-800 text-base">Directory Master</h4>
-                        <div class="flex gap-3 mt-1 items-center">
-                            <span class="text-[10px] font-bold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded uppercase">Bulk Tool</span>
-                            <span class="text-xs text-slate-400 italic font-medium">Instant File & Folder creator.</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="flex items-center gap-3">
-                    <a href="https://drive.google.com/uc?export=download&id=1XZVaI78Gl7CH2iV1l3HllXH01PEgB3ZC" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-blue-100">
-                        <i class="fas fa-download"></i> EXE
-                    </a>
-                    <a href="https://github.com/mryash-ftp/Alven-Automation-Hub/tree/main/2-Directory-Master" class="github-btn flex items-center gap-2 px-5 py-2.5 text-xs font-bold shadow-lg shadow-slate-200">
-                        <i class="fab fa-github"></i> CODE
-                    </a>
-                </div>
+            <div class="border-t border-slate-100 my-1 mx-4"></div>
+            <div class="update-item p-5 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-5 rounded-2xl">
+                <div class="flex items-center gap-5"><div class="w-10 h-10 bg-emerald-50 rounded-full flex items-center justify-center text-lg">📂</div><div><h4 class="font-extrabold text-slate-800">Directory Master</h4><div class="flex gap-3 mt-1"><span class="text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full">Bulk Tool</span><span class="text-xs text-slate-400 italic">Folder creator</span></div></div></div>
+                <div class="flex gap-3"><a href="https://drive.google.com/uc?export=download&id=1XZVaI78Gl7CH2iV1l3HllXH01PEgB3ZC" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-full px-4 py-2 flex items-center gap-2"><i class="fas fa-download"></i> EXE</a><a href="https://github.com/mryash-ftp/Alven-Automation-Hub/tree/main/2-Directory-Master" class="github-btn-sm flex items-center gap-2 px-4 py-2 text-xs"><i class="fab fa-github"></i> CODE</a></div>
             </div>
-
-            <div class="update-item p-6 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-6 rounded-2xl mt-4">
-    <div class="flex items-center gap-5">
-        <div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-lg">⚙️</div>
-        <div>
-            <h4 class="font-extrabold text-slate-800 text-base">Arduino Master Automation</h4>
-            <div class="flex gap-3 mt-1 items-center">
-                <span class="text-[10px] font-bold text-purple-600 bg-purple-50 px-2 py-0.5 rounded uppercase">V1.0</span>
-                <span class="text-xs text-slate-400 italic font-medium">Fast Automation & Pattern Generator.</span>
+            <div class="border-t border-slate-100 my-1 mx-4"></div>
+            <div class="update-item p-5 flex flex-col sm:flex-row sm:justify-between sm:items-center gap-5 rounded-2xl">
+                <div class="flex items-center gap-5"><div class="w-10 h-10 bg-purple-50 rounded-full flex items-center justify-center text-lg">⚙️</div><div><h4 class="font-extrabold text-slate-800">Arduino Master Automation</h4><div class="flex gap-3 mt-1"><span class="text-[10px] font-bold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full">V1.0</span><span class="text-xs text-slate-400 italic">Pattern Generator</span></div></div></div>
+                <div class="flex gap-3"><a href="https://drive.google.com/uc?export=download&id=1K7NJu7pQzM0BG3W0F1_HBX2XgDm2LMS2" class="bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-full px-4 py-2 flex items-center gap-2"><i class="fas fa-download"></i> EXE</a><a href="https://github.com/pradeep-alven-dev/Alven-X-Arduino-Automation" target="_blank" class="github-btn-sm flex items-center gap-2 px-4 py-2 text-xs"><i class="fab fa-github"></i> CODE</a></div>
             </div>
-        </div>
-    </div>
-    <div class="flex items-center gap-3">
-        <a href="https://drive.google.com/uc?export=download&id=1K7NJu7pQzM0BG3W0F1_HBX2XgDm2LMS2" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-all shadow-md shadow-blue-100">
-            <i class="fas fa-download"></i> EXE
-        </a>
-        <a href="https://github.com/pradeep-alven-dev/Alven-X-Arduino-Automation" target="_blank" class="github-btn flex items-center gap-2 px-5 py-2.5 text-xs font-bold shadow-lg shadow-slate-200">
-            <i class="fab fa-github"></i> CODE
-        </a>
-    </div>
-</div>
-
         </div>
     </section>
 
-    <footer class="bg-slate-900 text-white py-16 px-6">
+    <!-- footer with legal -->
+    <footer class="bg-slate-900 text-white py-16 px-6 reveal">
         <div class="max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 border-b border-slate-800 pb-12 mb-12">
-            <div>
-                <p class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4">Contact Developer</p>
-                <p class="text-2xl font-bold flex items-center gap-3">
-                    mryashftp@gmail.com
-                </p>
-            </div>
-            <div class="md:text-right">
-                <p class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-4">Legal Representative</p>
-                <p class="text-xl font-bold">Pradeep Kumar Gupta — Alven Alex</p>
-            </div>
+            <div><p class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Contact Developer</p><p class="text-2xl font-bold flex items-center gap-3"><i class="fa-regular fa-envelope text-blue-300"></i> mryashftp@gmail.com</p></div>
+            <div class="md:text-right"><p class="text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-4">Legal Representative</p><p class="text-xl font-bold bg-gradient-to-r from-slate-100 to-slate-300 bg-clip-text text-transparent">Pradeep Kumar Gupta — Alven Alex</p></div>
         </div>
-        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs font-bold">
+        <div class="max-w-5xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-xs font-medium">
             <p>© 2026 ALVEN ALEX LIBRARY. ALL RIGHTS RESERVED.</p>
-            <div class="flex gap-6">
-                <a href="https://github.com/mryash-ftp" class="hover:text-white transition" target="_blank">GITHUB</a>
-                <a href="https://www.linkedin.com/in/pradeep-alven-dev/" target="_blank" class="hover:text-white transition">LINKEDIN</a>
-            </div>
+            <div class="flex gap-6"><a href="https://github.com/mryash-ftp" class="hover:text-white transition flex items-center gap-1" target="_blank"><i class="fab fa-github"></i> GITHUB</a><a href="https://www.linkedin.com/in/pradeep-alven-dev/" target="_blank" class="hover:text-white transition flex items-center gap-1"><i class="fab fa-linkedin"></i> LINKEDIN</a></div>
         </div>
     </footer>
 
-    <script src="https://kit.fontawesome.com/f8e1a90484.js" crossorigin="anonymous"></script>
+    <!-- Modal for roadmap preview (dream project interactivity) -->
+    <div id="dreamModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-[100] opacity-0 invisible transition-all duration-300" style="pointer-events: none;">
+        <div class="bg-white max-w-lg w-full mx-4 rounded-3xl shadow-2xl transform scale-95 transition-all duration-300 p-6 border border-amber-200">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-2xl font-black bg-gradient-to-r from-amber-700 to-orange-600 bg-clip-text text-transparent">🚀 Dream Roadmap</h3>
+                <button onclick="closeDreamModal()" class="text-slate-400 hover:text-slate-800 text-2xl">&times;</button>
+            </div>
+            <div class="space-y-4 text-slate-700">
+                <div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">1</div><div><span class="font-bold">Q3 2026:</span> AI Assistant core + intelligent automation suite</div></div>
+                <div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">2</div><div><span class="font-bold">Q4 2026:</span> Cross-platform dashboard & cloud integration</div></div>
+                <div class="flex gap-3"><div class="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center text-amber-700">3</div><div><span class="font-bold">2027:</span> Public API, VS Code extension & enterprise tools</div></div>
+            </div>
+            <div class="mt-6 pt-4 border-t border-amber-100 flex justify-end">
+                <a href="https://mryash-ftp.github.io/Web-Projects/project2/" target="_blank" class="bg-amber-600 text-white px-5 py-2 rounded-xl font-bold text-sm hover:bg-amber-700 transition">View Full Project →</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const revealElements = document.querySelectorAll('.reveal, .reveal-scale');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15, rootMargin: "0px 0px -20px 0px" });
+        revealElements.forEach(el => observer.observe(el));
+
+        // Stagger delay for scale cards
+        const scaleCards = document.querySelectorAll('.reveal-scale');
+        scaleCards.forEach((card, idx) => {
+            let delay = card.getAttribute('data-delay') ? parseFloat(card.getAttribute('data-delay')) : idx * 0.08;
+            card.style.transitionDelay = `${delay}s`;
+        });
+
+        // marquee hover pause
+        const containerMarquee = document.querySelector('.marquee-container');
+        const marqueeEl = document.querySelector('.animate-marquee');
+        if(containerMarquee && marqueeEl) {
+            containerMarquee.addEventListener('mouseenter', () => marqueeEl.style.animationPlayState = 'paused');
+            containerMarquee.addEventListener('mouseleave', () => marqueeEl.style.animationPlayState = 'running');
+        }
+
+        // Modal functions for dream project
+        function openDreamModal() {
+            const modal = document.getElementById('dreamModal');
+            if(modal) {
+                modal.style.opacity = '1';
+                modal.style.visibility = 'visible';
+                modal.style.pointerEvents = 'auto';
+                const modalContent = modal.querySelector('.bg-white');
+                if(modalContent) modalContent.style.transform = 'scale(1)';
+            }
+        }
+        function closeDreamModal() {
+            const modal = document.getElementById('dreamModal');
+            if(modal) {
+                modal.style.opacity = '0';
+                modal.style.visibility = 'hidden';
+                modal.style.pointerEvents = 'none';
+                const modalContent = modal.querySelector('.bg-white');
+                if(modalContent) modalContent.style.transform = 'scale(0.95)';
+            }
+        }
+        window.addEventListener('click', (e) => {
+            const modal = document.getElementById('dreamModal');
+            if(e.target === modal) closeDreamModal();
+        });
+    </script>
 </body>
 </html>
