@@ -4,7 +4,7 @@
 Welcome to my central repository of code and data resources. This library serves as a public archive for my Python programs, automation scripts, and data analysis projects.
 
 ### 🚀 Quick Links
-- **Live Library:** [View Web Library](https://mryash-ftp.github.io/Alven-Library/)
+- **Live Library:** [View Web Library](https://mryash-ftp.github.io/Web-Projects/project1/)
 - **Contact:** mryashftp@gmail.com
 
 ---
